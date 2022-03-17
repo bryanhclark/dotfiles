@@ -19,7 +19,7 @@ set termguicolors
 set scrolloff=8
 set colorcolumn=80
 set signcolumn=yes
-
+set noshowmode
 set background=dark
 
 call plug#begin()
@@ -30,7 +30,12 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 colorscheme gruvbox
@@ -45,3 +50,20 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 nnoremap <leader>n :NERDTreeToggle<CR>
+
+lua << EOF
+require('lualine').setup {
+    options = {
+        theme = 'gruvbox'
+        },
+    sections = {
+    lualine_c = {
+        {
+          'filename',
+          file_status = true, -- displays file status (readonly status, modified status)
+          path = 2 -- 0 = just filename, 1 = relative path, 2 = absolute path
+        }
+      }
+     }
+}
+EOF
