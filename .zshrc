@@ -21,3 +21,8 @@ export PATH="$PATH:$HOME/.rvm/bin"
 dtf () {
     git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
 }
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+export PATH="/Users/bryanclark/.local/bin:$PATH"

@@ -29,13 +29,22 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
-Plug 'kyazdani42/nvim-web-devicons'
+" TODO prettier
+" TODO vim-fugitive
+" TODO eslint
+" TODO lsp
+" TODO lsp installer
+" TODO typescript
+" TODO javascript
+" TODO react
+" TODO ruby"
 call plug#end()
 
 colorscheme gruvbox
@@ -52,6 +61,7 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>n :NERDTreeToggle<CR>
 
 lua << EOF
+require('telescope').load_extension('fzf')
 require('lualine').setup {
     options = {
         theme = 'gruvbox'
