@@ -1,17 +1,23 @@
 call plug#begin()
-Plug 'yuezk/vim-js'
-Plug 'posva/vim-vue'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'ellisonleao/gruvbox.nvim'
-Plug 'daschw/leaf.nvim'
+
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'ryanoasis/vim-devicons'
+
 Plug 'nvim-lualine/lualine.nvim'
+
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'daschw/leaf.nvim'
 call plug#end()
 
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
