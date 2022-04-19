@@ -3,8 +3,7 @@ export ZSH="/Users/bryanclark/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM$
+export optflags="-Wno-error=implicit-function-declaration"
 
 
 plugins=(git)
@@ -12,11 +11,7 @@ plugins=(git)
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
-
 source $ZSH/oh-my-zsh.sh
-
-export PATH="$PATH:$HOME/.rvm/bin"
 
 dtf () {
     git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
@@ -26,3 +21,10 @@ dtf () {
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 export PATH="/Users/bryanclark/.local/bin:$PATH"
+
+# RVM can encounter errors if it's not the last thing in .bash_profile
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to path for scripting (to manage Ruby versions)
+export PATH="$GEM_HOME/bin:$PATH"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
+
+source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
