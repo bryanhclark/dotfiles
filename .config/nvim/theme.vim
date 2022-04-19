@@ -1,6 +1,6 @@
 lua << EOF
 require("leaf").setup({
-    theme = "dark", -- default, alternatives: "dark", "lighter", "darker", "lightest", "darkest"
+    theme = "darker", -- default, alternatives: "dark", "lighter", "darker", "lightest", "darkest"
 })
 require('telescope').load_extension('fzf')
 require('lualine').setup {
@@ -18,4 +18,4 @@ require('lualine').setup {
      }
 }
 EOF
-colorscheme leaf
+colorscheme gruvbox

@@ -4,6 +4,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'tpope/vim-commentary'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -15,6 +16,7 @@ Plug 'preservim/nerdtree' |
             \ Plug 'ryanoasis/vim-devicons'
 
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'tpope/vim-fugitive'
 
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'daschw/leaf.nvim'
@@ -26,5 +28,7 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-nnoremap <leader>n :NERDTreeToggle<CR>
- 
+nnoremap <leader>n :NERDTreeToggle <CR>
+nnoremap <C-\> :NERDTreeToggle %<CR> 
+
+noremap <leader>/ :Commentary<cr>
