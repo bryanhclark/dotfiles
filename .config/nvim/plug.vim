@@ -5,6 +5,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -20,6 +21,7 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'daschw/leaf.nvim'
+Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
