@@ -23,6 +23,7 @@ source $HOME/.config/nvim/plug/vim-jsx-typescript/init.vim
 Plug 'vim-scripts/Zenburn'
 Plug 'daschw/leaf.nvim'
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'vim-scripts/chlordane.vim'
 call plug#end()
 
 
