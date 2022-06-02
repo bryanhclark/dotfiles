@@ -6,7 +6,7 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export optflags="-Wno-error=implicit-function-declaration"
 
 
-plugins=(git)
+plugins=(git zsh-vi-mode)
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -27,4 +27,20 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to path for scripting (to manage Ru
 export PATH="$GEM_HOME/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
 
-source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+alias conf="cd ~/.config/nvim && nvim ."
+alias zshrc="cd ~ && nvim .zshrc"
+alias zsh:source="source ~/.zshrc"
+alias nvim:source="source ~/.config/nvim/init.vim"
+
+alias notes="cd ~/.notes && nvim ."
+alias config="cd ~/.config/nvim && nvim ."
+
+
+# Coa alias
+alias coa="tmux a -t coa"
+alias yw="yarn workspace"
+alias yws="yarn workspaces"
+
+alias yww="yarn workspace web"
+alias ywm="yarn workspace mobile"

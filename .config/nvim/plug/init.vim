@@ -1,6 +1,6 @@
 call plug#begin()
 source $HOME/.config/nvim/plug/coc/init.vim
-source $HOME/.config/nvim/plug/nerdtree/init.vim
+" source $HOME/.config/nvim/plug/nerdtree/init.vim
 source $HOME/.config/nvim/plug/telescope/init.vim
 source $HOME/.config/nvim/plug/vim-devicons/init.vim
 source $HOME/.config/nvim/plug/vim-surround/init.vim
@@ -24,6 +24,10 @@ Plug 'vim-scripts/Zenburn'
 Plug 'daschw/leaf.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'vim-scripts/chlordane.vim'
+Plug 'tpope/vim-vinegar'
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'rktjmp/lush.nvim'
+Plug 'mcchrish/zenbones.nvim'
 call plug#end()
 
 

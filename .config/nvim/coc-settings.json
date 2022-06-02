@@ -1,5 +1,7 @@
 {
   "solargraph.commandPath": "/Users/bryanclark/.rvm/gems/ruby-2.7.1/bin/solargraph",
+  "json.enable": true,
+  "javascript.validate.enable": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
@@ -8,6 +10,7 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "rust"
+    "rust",
+    "json"
   ]
 }
