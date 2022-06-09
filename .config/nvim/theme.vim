@@ -16,4 +16,4 @@ require('lualine').setup {
      }
 }
 EOF
-colorscheme chlordane
+colorscheme nordfox
