@@ -1,5 +1,5 @@
 set exrc
-set guicursor=
+" set guicursor=
 set relativenumber
 set nu
 set nohlsearch
