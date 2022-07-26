@@ -20,7 +20,6 @@ set termguicolors
 set scrolloff=8
 set signcolumn=yes
 set noshowmode
-set background=dark
 set showmatch
 set diffopt+=vertical
 

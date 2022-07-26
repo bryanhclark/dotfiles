@@ -19,6 +19,13 @@ source $HOME/.config/nvim/plug/popup/init.vim
 source $HOME/.config/nvim/plug/vim-commentary/init.vim
 Plug 'EdenEast/nightfox.nvim' " Vim-Plug
 Plug 'tpope/vim-vinegar'
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/vim-react-snippets'
+
+Plug 'vim-scripts/chlordane.vim'
+Plug 'sickill/vim-monokai'
+Plug 'hzchirs/vim-material'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 

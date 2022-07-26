@@ -16,4 +16,6 @@ require('lualine').setup {
      }
 }
 EOF
-colorscheme nordfox
+set background=dark
+syntax enable
+colorscheme vim-material
