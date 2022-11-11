@@ -15,7 +15,11 @@ require('lualine').setup {
       lualine_x = {}
      }
 }
+
 EOF
-set background=dark
 syntax enable
-colorscheme vim-material
+colorscheme leaf
+
+let g:transparent_enabled = v:true
+hi Comment guifg=#f5b3ca
+hi CocUnusedVariables guifg=#a82553

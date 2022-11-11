@@ -1,3 +1,5 @@
+let g:mapleader = " "
+
 set exrc
 " set guicursor=
 set relativenumber
@@ -23,6 +25,8 @@ set noshowmode
 set showmatch
 set diffopt+=vertical
 
+" move lines up and down like vscode
+" works for normal, insert, and vis modes
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
