@@ -1,7 +1,5 @@
-let g:mapleader = " "
 
 set exrc
-" set guicursor=
 set relativenumber
 set nu
 set nohlsearch
@@ -24,6 +22,8 @@ set signcolumn=yes
 set noshowmode
 set showmatch
 set diffopt+=vertical
+
+let mapleader="\<space>"
 
 " move lines up and down like vscode
 " works for normal, insert, and vis modes

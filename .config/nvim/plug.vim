@@ -1,5 +1,6 @@
 call plug#begin()
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'neovim/nvim-lspconfig'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 
