@@ -2,14 +2,19 @@ export ZSH="/Users/bryanclark/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
+export PATH="/Users/bryanclark/.cargo/bin:$PATH"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export optflags="-Wno-error=implicit-function-declaration"
 
 
-plugins=(git zsh-vi-mode)
+plugins=(git zsh-vi-mode zsh-syntax-highlighting zsh-autosuggestions)
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+
+export PATH="/.local/share/nvim:$PATH"
+export PATH="/Applications/Godot.app:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -25,6 +30,7 @@ export PATH="/Users/bryanclark/.local/bin:$PATH"
 # RVM can encounter errors if it's not the last thing in .bash_profile
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to path for scripting (to manage Ruby versions)
 export PATH="$GEM_HOME/bin:$PATH"
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
 
 
@@ -35,6 +41,7 @@ alias nvim:source="source ~/.config/nvim/init.vim"
 
 alias notes="cd ~/.notes && nvim ."
 alias config="cd ~/.config/nvim && nvim ."
+alias rust="cd ~/Documents/rustlings"
 
 
 # Coa alias
@@ -44,3 +51,7 @@ alias yws="yarn workspaces"
 
 alias yww="yarn workspace web"
 alias ywm="yarn workspace mobile"
+
+alias coa:root="cd ~/Documents/coa/coa/"
+alias coa:web="cd ~/Documents/coa/coa/apps/web/"
+alias coa:mob="cd ~/Documents/coa/coa/apps/mobile/"

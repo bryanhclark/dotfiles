@@ -2,7 +2,7 @@ lua << EOF
 require('telescope').load_extension('fzf')
 require('lualine').setup {
     options = {
-        theme = 'auto'
+        theme = 'everforest'
         },
     sections = {
       lualine_c = {
@@ -17,9 +17,7 @@ require('lualine').setup {
 }
 
 EOF
-syntax enable
-colorscheme leaf
 
-let g:transparent_enabled = v:true
-hi Comment guifg=#f5b3ca
-hi CocUnusedVariables guifg=#a82553
+syntax enable
+colorscheme everforest
+

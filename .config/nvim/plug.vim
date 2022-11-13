@@ -11,6 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
+Plug 'sainnhe/everforest'
 
 
 Plug 'leafgarland/typescript-vim'
@@ -23,6 +24,8 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.1.0*'}
 Plug 'mlaursen/vim-react-snippets'
 Plug 'daschw/leaf.nvim'
+Plug 'rakr/vim-two-firewatch'
+
 Plug 'xiyaowong/nvim-transparent'
 Plug 'windwp/nvim-spectre'
 
