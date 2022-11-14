@@ -1,6 +1,6 @@
 local lspkind = require('lspkind')
 
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
@@ -14,7 +14,7 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'path' },
-    { name = 'luasnip' }, 
+    { name = 'luasnip' },
     { name = 'buffer', keyword_length = 3 },
   },
 
@@ -35,7 +35,7 @@ cmp.setup({
         path = "[path]",
         luasnip = "[snip]",
       },
-      before = function (_, vim_item)
+      before = function(_, vim_item)
         return vim_item
       end
     }
@@ -63,6 +63,6 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
-    { name = 'cmdline' , keyword_length = 3 }
+    { name = 'cmdline', keyword_length = 3 }
   })
 })
