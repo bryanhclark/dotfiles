@@ -1,5 +1,5 @@
-require('completion')
-require("nvim-lsp-installer").setup {}
+require("completion")
+require("nvim-lsp-installer").setup({})
 
 -- Native LSP Setup
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -10,7 +10,7 @@ local on_attach = function(client, bufnr)
       group = augroup,
       buffer = bufnr,
       callback = function()
-        if client.name == 'tsserver' then
+        if client.name == "tsserver" then
           client.server_capabilities.document_formatting = false
         end
         vim.lsp.buf.format({ bufnr = bufnr })
@@ -27,11 +27,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>dF", vim.diagnostic.goto_prev, { buffer = 0 })
 
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = 0 })
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format { async = true }' ]]
+
+  -- vim.cmd([[auocmd BufWritePre <buffer> lua vim.lsp.buf.format { async = true } ]])
 end
-
-
-
 
 local opts = {
   -- all the opts to send to nvim-lspconfig
@@ -55,18 +53,18 @@ local opts = {
 
 require("rust-tools").setup(opts)
 
-
-local null_ls = require('null-ls')
+local null_ls = require("null-ls")
 
 null_ls.setup({
   sources = {
-    -- TODO: stylelua
-    null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.formatting.prettier,
-  }
+    null_ls.builtins.formatting.rubocop,
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.diagnostics.eslint,
+  },
 })
 
-require('typescript').setup({
+require("typescript").setup({
   server = {
     on_attach = function(client, bufnr)
       vim.keymap.set("n", "<leader>dF", vim.diagnostic.goto_prev, { buffer = 0 })
@@ -75,22 +73,21 @@ require('typescript').setup({
       vim.keymap.set("n", "<leader>go", ":TypescriptAddMissingImports<CR>", { buffer = 0 })
       vim.keymap.set("n", "<leader>gI", ":TypescriptFixAll<CR>", { buffer = 0 })
       on_attach(client, bufnr)
-    end
-  }
+    end,
+  },
 })
 
-require('lspconfig')['solargraph'].setup {
+require("lspconfig")["solargraph"].setup({
   on_attach = on_attach,
-}
+})
 
-
-require('lspconfig')['sumneko_lua'].setup {
+require("lspconfig")["sumneko_lua"].setup({
   on_attach = on_attach,
   settings = {
     Lua = {
       diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  }
-}
+        globals = { "vim" },
+      },
+    },
+  },
+})

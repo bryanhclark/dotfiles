@@ -46,6 +46,7 @@ Plug 'mfussenegger/nvim-dap'
 
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/typescript.nvim'
+Plug 'wesleimp/stylua.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'

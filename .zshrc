@@ -44,6 +44,11 @@ alias config="cd ~/.config/nvim && nvim ."
 alias rust="cd ~/Documents/rustlings"
 
 
+# Our-scene alias
+alias os="tmux a -t our_scene"
+alias os:web="cd ~/Documents/our-scene/our-scene/apps/web"
+alias os:api="cd ~/Documents/our-scene/our-scene/apps/api"
+
 # Coa alias
 alias coa="tmux a -t coa"
 alias yw="yarn workspace"
