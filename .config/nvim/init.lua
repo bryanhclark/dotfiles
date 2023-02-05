@@ -10,8 +10,9 @@ end
 require("packer").startup(function(use)
   -- Package manager
   use("wbthomason/packer.nvim")
+  use("tpope/vim-vinegar")
 
-  use("nvim-lua/plenary.nvim")
+  use("savq/melange-nvim")
 
   use({
     "nvim-tree/nvim-tree.lua",
@@ -41,7 +42,6 @@ require("packer").startup(function(use)
   require("null-ls").setup({
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)
-      print("CLIENT", client)
 
       if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -115,7 +115,6 @@ require("packer").startup(function(use)
   use("tpope/vim-rhubarb")
   use("lewis6991/gitsigns.nvim")
 
-  use("navarasu/onedark.nvim") -- Theme inspired by Atom
   use("nvim-lualine/lualine.nvim") -- Fancier statusline
   use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
   use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
@@ -166,7 +165,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -187,7 +186,7 @@ vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd([[colorscheme onedark]])
+vim.cmd([[colorscheme melange]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -223,7 +222,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 require("lualine").setup({
   options = {
     icons_enabled = false,
-    theme = "onedark",
     component_separators = "|",
     section_separators = "",
   },
