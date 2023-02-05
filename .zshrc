@@ -1,6 +1,6 @@
 export ZSH="/Users/bryanclark/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="dracula"
 
 export PATH="/Users/bryanclark/.cargo/bin:$PATH"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -46,6 +46,7 @@ alias rust="cd ~/Documents/rustlings"
 
 # Our-scene alias
 alias os="tmux a -t our_scene"
+alias os:root="cd ~/Documents/our-scene/our-scene/"
 alias os:web="cd ~/Documents/our-scene/our-scene/apps/web"
 alias os:api="cd ~/Documents/our-scene/our-scene/apps/api"
 
