@@ -42,7 +42,6 @@ require("packer").startup(function(use)
   require("null-ls").setup({
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)
-
       if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -162,6 +161,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- See `:help vim.o`
 
 -- Set highlight on search
+vim.cmd("set expandtab")
+vim.cmd("set tabstop=2")
+vim.cmd("set shiftwidth=2")
+vim.cmd("set softtabstop=2")
+vim.bo.softtabstop = 2
 vim.o.hlsearch = false
 
 -- Make line numbers default
@@ -372,7 +376,7 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
 })
 
@@ -538,6 +542,7 @@ cmp.setup({
 -- vim: ts=2 sts=2 sw=2 et
 
 -- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
