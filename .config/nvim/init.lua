@@ -13,18 +13,13 @@ require("packer").startup(function(use)
   use("tpope/vim-vinegar")
 
   use("savq/melange-nvim")
+  use("AlessandroYorba/Alduin")
+  use("junegunn/seoul256.vim")
 
-  use({
-    "nvim-tree/nvim-tree.lua",
-    requires = {
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
-    },
-    tag = "nightly", -- optional, updated every week. (see issue #1193)
-  })
   -- Lua
   use({
     "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
+    requires = { { "nvim-tree/nvim-web-devicons", opt = false } },
     config = function()
       require("trouble").setup({
         -- your configuration comes here
@@ -39,6 +34,7 @@ require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
+  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
   require("null-ls").setup({
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)
@@ -190,7 +186,8 @@ vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd([[colorscheme melange]])
+vim.g.seoul256_background = 233
+vim.cmd([[colorscheme seoul256]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -223,14 +220,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
-require("lualine").setup({
-  options = {
-    icons_enabled = false,
-    component_separators = "|",
-    section_separators = "",
-  },
-})
-
+require("lualine").setup()
 -- Enable Comment.nvim
 require("Comment").setup()
 
@@ -350,10 +340,6 @@ require("nvim-treesitter.configs").setup({
 })
 -- examples for your init.lua
 
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 300
@@ -362,23 +348,23 @@ vim.opt.timeoutlen = 300
 
 -- OR setup with some options
 
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    width = 30,
-    mappings = {
-      list = {
-        { key = "-", action = "dir_up" },
-      },
-    },
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = false,
-  },
-})
+-- require("nvim-tree").setup({
+--   sort_by = "case_sensitive",
+--   view = {
+--     width = 30,
+--     mappings = {
+--       list = {
+--         { key = "-", action = "dir_up" },
+--       },
+--     },
+--   },
+--   renderer = {
+--     group_empty = true,
+--   },
+--   filters = {
+--     dotfiles = false,
+--   },
+-- })
 
 vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<cr>")
 
