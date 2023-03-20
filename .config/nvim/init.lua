@@ -14,7 +14,8 @@ require("packer").startup(function(use)
 
   use("savq/melange-nvim")
   use("AlessandroYorba/Alduin")
-  use("junegunn/seoul256.vim")
+  use('pineapplegiant/spaceduck')
+  use('NLKNguyen/papercolor-theme')
 
   -- Lua
   use({
@@ -34,32 +35,39 @@ require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
-  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-  require("null-ls").setup({
-    -- you can reuse a shared lspconfig on_attach callback here
-    on_attach = function(client, bufnr)
-      if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-        vim.api.nvim_create_autocmd("BufWritePre", {
+  -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+---
+-- null-ls
+---
 
-          group = augroup,
-          buffer = bufnr,
-          callback = function()
-            -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-            vim.lsp.buf.format({ bufnr = bufnr })
-          end,
-        })
-      end
-    end,
-    sources = {
-      require("null-ls").builtins.formatting.stylua,
-      require("null-ls").builtins.formatting.prettier,
-      require("null-ls").builtins.formatting.rubocop,
-      require("null-ls").builtins.diagnostics.tsc,
-      require("null-ls").builtins.diagnostics.rubocop,
-    },
-  })
+local null_ls = require("null-ls")
+local formatting = null_ls.builtins.formatting
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+null_ls.setup({
+  autostart = true,
+  debug = false,
+  sources = {
+    formatting.prettier,
+    formatting.shfmt.with({
+      extra_args = { "-i", "2" }
+    }),
+    -- formatting.stylua
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+          vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+      })
+    end
+  end,
+})
   use({
     "folke/which-key.nvim",
     config = function()
@@ -85,6 +93,7 @@ require("packer").startup(function(use)
 
       -- Additional lua configuration, makes nvim stuff amazing
       "folke/neodev.nvim",
+      "jose-elias-alvarez/typescript.nvim",
     },
   })
 
@@ -186,8 +195,8 @@ vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.g.seoul256_background = 233
-vim.cmd([[colorscheme seoul256]])
+vim.o.background = 'dark'
+vim.cmd([[colorscheme papercolor]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -464,19 +473,85 @@ require("mason").setup()
 -- Ensure the servers above are installed
 local mason_lspconfig = require("mason-lspconfig")
 
-mason_lspconfig.setup({
-  ensure_installed = vim.tbl_keys(servers),
+-- See :help mason-lspconfig-settings
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'tsserver',
+    'eslint',
+    'html',
+    'cssls'
+  }
 })
 
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    require("lspconfig")[server_name].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    })
+---
+-- LSP config
+---
+-- See :help lspconfig-global-defaults
+local lspconfig = require('lspconfig')
+local lsp_defaults = lspconfig.util.default_config
+
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lsp_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
+
+---
+-- LSP servers
+---
+-- See :help mason-lspconfig-dynamic-server-setup
+require('mason-lspconfig').setup_handlers({
+  function(server)
+    -- See :help lspconfig-setup
+    lspconfig[server].setup({})
   end,
+  ['tsserver'] = function()
+    -- Note that we're configuring typescript.nvim here as it will
+    -- intercept and handle tsserver for us.
+    -- @see https://github.com/jose-elias-alvarez/typescript.nvim/issues/21#issuecomment-1344435540
+    require("typescript").setup({
+      settings = {
+        completions = {
+          completeFunctionCalls = true
+        }
+      }
+    })
+  end
 })
+
+---
+-- LSP Keybindings
+---
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = group,
+  desc = 'LSP actions',
+  callback = function()
+    local bufmap = function(mode, lhs, rhs)
+      local opts = { buffer = true }
+      vim.keymap.set(mode, lhs, rhs, opts)
+    end
+
+    -- You can search each function in the help page.
+    -- For example :help vim.lsp.buf.hover()
+
+    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+    bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+    bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+    bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<cr>')
+    bufmap('n', 'gR', '<cmd>lua vim.lsp.buf.references()<cr>')
+    bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+    bufmap('n', '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>')
+    bufmap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+    bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+    bufmap('n', '[a', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+    bufmap('n', ']a', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+  end
+})
+
+vim.keymap.set('n', '<leader>af', ':EslintFixAll<CR>')
 
 -- Turn on lsp status information
 require("fidget").setup()

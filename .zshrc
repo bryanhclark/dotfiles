@@ -16,6 +16,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PATH="/.local/share/nvim:$PATH"
 export PATH="/Applications/Godot.app:$PATH"
 
+export ANDROID_HOME="/Users/bryanclark/Library/Android/sdk"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
 source $ZSH/oh-my-zsh.sh
 
 dtf () {
@@ -45,10 +48,10 @@ alias rust="cd ~/Documents/rustlings"
 
 
 # Our-scene alias
-alias os="tmux a -t our_scene"
-alias os:root="cd ~/Documents/our-scene/our-scene/"
-alias os:web="cd ~/Documents/our-scene/our-scene/apps/web"
-alias os:api="cd ~/Documents/our-scene/our-scene/apps/api"
+alias os="tmux a -t os"
+alias os:root="cd ~/Documents/my_stuff/our-scene/"
+alias os:web="cd ~/Documents/my_stuff/our-scene/apps/web"
+alias os:api="cd ~/Documents/my_stuff/our-scene/apps/api"
 
 # Coa alias
 alias coa="tmux a -t coa"
