@@ -35,6 +35,11 @@ require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
+  use({
+    "ThePrimeagen/harpoon",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
+
   -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 ---
 -- null-ls
@@ -479,7 +484,8 @@ require('mason-lspconfig').setup({
     'tsserver',
     'eslint',
     'html',
-    'cssls'
+    'cssls',
+    'rust_analyzer',
   }
 })
 
@@ -598,6 +604,25 @@ cmp.setup({
     { name = "luasnip" },
   },
 })
+
+-- HARPOON
+require("harpoon").setup({
+    menu = {
+        width = vim.api.nvim_win_get_width(0) - 30,
+        
+    }
+})
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+vim.keymap.set("n", "<leader>a", mark.add_file)
+vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+
+vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<C-j>", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-k>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-l>", function() ui.nav_file(4) end)
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
