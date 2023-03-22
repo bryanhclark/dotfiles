@@ -16,6 +16,9 @@ require("packer").startup(function(use)
   use("AlessandroYorba/Alduin")
   use('pineapplegiant/spaceduck')
   use('NLKNguyen/papercolor-theme')
+  use('kdheepak/lazygit.nvim')
+
+
 
   -- Lua
   use({
@@ -180,6 +183,7 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.relativenumber = true
+vim.wo.number = true
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -558,6 +562,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.keymap.set('n', '<leader>af', ':EslintFixAll<CR>')
+vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>')
 
 -- Turn on lsp status information
 require("fidget").setup()
