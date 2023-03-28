@@ -11,12 +11,14 @@ require("packer").startup(function(use)
   -- Package manager
   use("wbthomason/packer.nvim")
   use("tpope/vim-vinegar")
+  use("tpope/vim-commentary")
 
   use("savq/melange-nvim")
   use("AlessandroYorba/Alduin")
   use('pineapplegiant/spaceduck')
   use('NLKNguyen/papercolor-theme')
   use('kdheepak/lazygit.nvim')
+  use('prisma/vim-prisma')
 
 
 
@@ -490,6 +492,7 @@ require('mason-lspconfig').setup({
     'html',
     'cssls',
     'rust_analyzer',
+    'prismals',
   }
 })
 
