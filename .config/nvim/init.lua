@@ -46,38 +46,38 @@ require("packer").startup(function(use)
   })
 
   -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
----
--- null-ls
----
+  ---
+  -- null-ls
+  ---
 
-local null_ls = require("null-ls")
-local formatting = null_ls.builtins.formatting
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+  local null_ls = require("null-ls")
+  local formatting = null_ls.builtins.formatting
+  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-null_ls.setup({
-  autostart = true,
-  debug = false,
-  sources = {
-    formatting.prettier,
-    formatting.shfmt.with({
-      extra_args = { "-i", "2" }
-    }),
-    -- formatting.stylua
-  },
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-          vim.lsp.buf.format({ bufnr = bufnr })
-        end,
-      })
-    end
-  end,
-})
+  null_ls.setup({
+    autostart = true,
+    debug = false,
+    sources = {
+      formatting.prettier,
+      formatting.shfmt.with({
+        extra_args = { "-i", "2" }
+      }),
+      -- formatting.stylua
+    },
+    on_attach = function(client, bufnr)
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end,
+        })
+      end
+    end,
+  })
   use({
     "folke/which-key.nvim",
     config = function()
@@ -615,10 +615,10 @@ cmp.setup({
 
 -- HARPOON
 require("harpoon").setup({
-    menu = {
-        width = vim.api.nvim_win_get_width(0) - 30,
-        
-    }
+  menu = {
+    width = vim.api.nvim_win_get_width(0) - 30,
+
+  }
 })
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
@@ -630,6 +630,11 @@ vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
 vim.keymap.set("n", "<C-j>", function() ui.nav_file(2) end)
 vim.keymap.set("n", "<C-k>", function() ui.nav_file(3) end)
 vim.keymap.set("n", "<C-l>", function() ui.nav_file(4) end)
+vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true })
+
+
+vim.keymap.set("n", "<leader>tt", ":TroubleToggle<CR>")
+
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`
