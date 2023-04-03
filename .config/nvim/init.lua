@@ -215,6 +215,9 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 
+-- dont wrap lines
+vim.wo.wrap = false
+
 -- Set colorscheme
 vim.o.termguicolors = true
 vim.o.background = 'dark'
@@ -254,6 +257,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 require("lualine").setup()
 -- Enable Comment.nvim
 require("Comment").setup()
+
+require("todo-comments").setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
@@ -645,6 +650,14 @@ vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", 
 
 
 vim.keymap.set("n", "<leader>tt", ":TroubleToggle<CR>")
+vim.keymap.set("n", "<leader>td", ":TodoTrouble<CR>")
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
 
 
 
